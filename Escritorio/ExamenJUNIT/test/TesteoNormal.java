@@ -21,6 +21,7 @@ public class TesteoNormal {
 
     Calculo obj;
 
+    //Antes de nada, referenciamos el objeto. 
     @Before
     public void inicializar() {
         obj = new Calculo();
@@ -28,10 +29,15 @@ public class TesteoNormal {
 
     @Test
     public void testeo() {
+        //Los input son los valores que vamos a meter dentro del método obtenerMCD.
         int input1 = 50;
         int input2 = 20;
+        
+        //Este es el valor que estamos esperando que retorne.
         int valorEsperado = 10;
-
+        
+        //Con este método vemos si el valor esperado (en nuestro caso 10, para los valores 50 y 20),
+        //es el que devuelve el método de la clase Calculo, y coinciden.  
         assertEquals(valorEsperado, obj.obtenerMCD(input1, input2));
     }
 
