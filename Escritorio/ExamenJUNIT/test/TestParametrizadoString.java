@@ -23,15 +23,22 @@ import org.junit.runners.Parameterized;
 @RunWith(Parameterized.class)
 public class TestParametrizadoString {
 
-    public TestParametrizadoString() {
-        int input1;
-        int input2;
-        String esperado;
-        Calculo obj = new Calculo();
+    int input1;
+    int input2;
+    String esperado;
+    Calculo obj = new Calculo();
+    
+    //Constructor para evaluar el test parametrizado. 
+    public TestParametrizadoString(int input1, int input2, String esperado) {
+        this.input1 = input1;
+        this.input2 = input2;
+        this.esperado = esperado;
     }
 
+    //Hemos modificado el método de la claseMCD para que retorne un String, y testeamos
+    //el código para ver si, al meter valores válidos, nos retorna que se ha ejecutado correctamente.
     @Parameterized.Parameters
-    public Collection metodoMCDstring() {
+    public static Collection metodoMCDstring() {
         return Arrays.asList(new Object[][]{
             {50, 20, "Cálculo correcto"},
             {60, 10, "Cálculo correcto"},
@@ -40,10 +47,11 @@ public class TestParametrizadoString {
 
         });
     }
-
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
+    
+    //Testeo. Empleamos assert equals para ver si coincide con lo evaluado en el 
+    //método parametro metodoMCDstring()
+    @Test
+    public void testeo() {
+        assertEquals(esperado, obj.obtenerMCD(input1, input2));
+    }
 }
